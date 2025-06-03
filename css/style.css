@@ -235,7 +235,7 @@ button {
     object-fit: contain;
 }
 
-/* Kitchen Section */
+/* Kitchen Section & Global Food Card Styles */
 .kitchen-section {
     background-color: var(--background-gray);
     padding: 105px 0;
@@ -340,191 +340,179 @@ button {
     display: inline-block;
 }
 
+/* Global Add to Cart Button (plus icon) */
 .add-to-cart {
-    background-color: var(--secondary-color); /* Set default to yellow */
+    background-color: var(--secondary-color); /* Yellow by default */
     border-radius: 5px;
     width: 22px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* transition: background-color 0.3s; /* No longer needed for background */
-}
-
-
-.add-to-cart.clicked {
-    transform: scale(0.9);
-    background-color: var(--primary-color);
-}
-
-.add-to-cart.clicked img {
-    filter: brightness(10);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-to-cart img {
     width: 12px;
+    filter: brightness(10); /* White icon by default (assuming cart.svg is white or light) */
+    transition: filter 0.3s ease;
 }
 
-/* Trending Section */
+.add-to-cart.clicked {
+    transform: scale(0.9);
+    background-color: var(--primary-color); /* Green on click animation */
+}
+
+
+/* Trending Section - Carousel */
 .trending-section {
     background-color: var(--white);
     padding: 80px 0;
     position: relative;
-    overflow: visible;
 }
 
 .carousel-container {
-    position: relative;
-    margin: 0 auto;
-    width: 1053px; /* 873px for cards + 180px for padding (90px * 2) */
-    padding: 0 90px; /* Add padding to make room for arrows */
-    overflow: visible;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 20px; 
+    /* max-width will be controlled by .container wrapping this section */
 }
 
 .carousel-items-wrapper {
-    width: 873px; /* Exactly 3 cards (275px * 3) + 2 gaps (24px * 2) */
+    /* Width is dynamically set by JavaScript */
     overflow: hidden;
 }
 
 .carousel-items {
     display: flex;
-    justify-content: flex-start;
-    gap: 24px;
+    gap: 24px; 
     position: relative;
     transition: transform 0.5s ease;
-    width: max-content;
+    width: max-content; 
 }
 
 .carousel-items .food-card {
     width: 275px;
-    flex-shrink: 0;
+    flex-shrink: 0; 
 }
 
 .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
+    z-index: 10;
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
     padding: 0;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     display: block !important;
+    flex-shrink: 0; 
 }
 
-.prev-arrow {
-    left: 10px;
-}
-
-.next-arrow {
-    right:10px;
-    margin-right: 235px;
+.carousel-arrow:not(.active) {
+    opacity: 0.5;
+    cursor: default;
 }
 
 .arrow-circle {
     width: 71px;
     height: 71px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Solid Green */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 4px 5px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    z-index: 100;
 }
 
 .arrow-circle img {
-    width: 21px;
+    width: 21px; 
     height: 37px;
     transition: filter 0.3s ease;
-    filter: brightness(10);
+    object-fit: contain;
 }
 
-.food-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.prev-arrow .arrow-circle img {
+    filter: brightness(10); /* Makes green left-arrow.svg appear white */
 }
 
-.food-card.active {
+.next-arrow .arrow-circle img {
+    filter: none; /* Assumes right-arrow.svg is already white */
+}
+
+.trending-section .food-card.active {
     transform: translateY(-5px);
     box-shadow: 0 6px 40px rgba(0, 0, 0, 0.14);
 }
 
-.quantity-control {
+/* Carousel Quantity Control Styling */
+.trending-section .food-card .quantity-control {
     display: flex;
     align-items: center;
-    background-color: var(--white);
-    border: 1px solid var(--primary-color);
+    background-color: var(--white); 
+    border: 1px solid var(--secondary-color); 
     border-radius: 5px;
     overflow: hidden;
     height: 25px;
 }
-
-.quantity-btn {
+.trending-section .food-card .quantity-control .quantity-btn {
     width: 26px;
-    height: 25px;
+    height: 25px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--secondary-color); 
+    color: var(--white); 
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border: none; 
 }
-
-.minus {
-    border-radius: 5px 0 0 5px;
-}
-
-.plus {
-    border-radius: 0 5px 5px 0;
-}
-
-.quantity {
+.trending-section .food-card .quantity-control .quantity {
     width: 41px;
-    height: 25px;
+    height: 23px; 
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 15px;
     font-weight: 500;
     color: var(--text-dark);
+    background-color: var(--white); 
+    border-left: 1px solid var(--secondary-color); 
+    border-right: 1px solid var(--secondary-color); 
 }
 
-/* css/style.css */
 
-/* ... (other styles remain the same) ... */
+/* ... (previous styles) ... */
 
 /* Service Section */
 .service-section {
     position: relative;
-    overflow: hidden; /* Can be useful if elements inside try to overflow */
-    /* height: 860px; /* Consider making this auto or min-height if content dictates height */
-    padding: 80px 0; /* Add padding to the section itself */
+    overflow: hidden;
+    /* Adjust overall padding to give more space for the green area if needed */
+    padding-top: 80px; /* Initial top padding */
+    padding-bottom: 120px; /* Increased bottom padding to push the green area up more */
 }
 
-.service-section::before,
-.service-section::after {
-    /* These pseudo-elements are for background colors, ensure they don't cover content if section height is not fixed */
+.service-section::before, /* Top white part */
+.service-section::after { /* Bottom green part */
     content: '';
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50%; 
-    z-index: -1; /* Send them to the back */
+    z-index: -1;
 }
 
 .service-section::before {
     top: 0;
+    height: 60%; /* Give more space to the top white part */
     background-color: #FAFAFA;
 }
 
 .service-section::after {
     bottom: 0;
+    height: 40%; /* The green part will take the remaining space */
     background-color: #C7EACC;
 }
 
@@ -532,28 +520,42 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* padding: 80px 0; /* Moved padding to .service-section */
-    gap: 40px; /* Adjusted gap */
-    max-width: 1050px; /* Or your preferred container width */
-    /* height: 100%; /* Remove if section height is not fixed */
-    position: relative; /* Keep for z-index stacking context if needed by children */
-    z-index: 1; /* Ensure content is above pseudo-elements */
+    gap: 40px; /* This will be the gap between .service-content and .service-card */
+    max-width: 1050px;
+    position: relative;
+    z-index: 1;
+    /* No specific height on container; let content dictate */
 }
 
 .service-content {
     text-align: center;
-    position: relative; /* Stays relative */
-    z-index: 1; /* Keep above background if needed, but service-card will also be z-index 1 or auto */
     max-width: 864px;
     width: 100%;
-    margin: 0 auto; /* Center the text content */
-    /* padding: 0 15px; /* Handled by .container */
+    margin: 0 auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-bottom: 30px; /* Add some space before the video card */
+    /* margin-bottom is handled by container's gap */
 }
+
+/* ... (rest of service-content h2, p styles remain the same) ... */
+
+.service-card {
+    position: relative; 
+    width: 877px;    
+    height: 442px;  
+    max-width: 100%; 
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden; 
+    background-color: #000; 
+    z-index: 1;
+    margin: 0 auto; 
+    /* The gap from .service-section .container will push this down */
+}
+
+/* ... (rest of the CSS) ... */
 
 .service-content h2 {
     font-family: 'Montserrat', sans-serif;
@@ -583,14 +585,14 @@ button {
     width: 877px;    
     height: 442px;  
     max-width: 100%; 
-    border: 1px solid #DEDEDE;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     overflow: hidden; 
     background-color: #000; 
     z-index: 1;
     margin: 0 auto; 
+    /* The gap from .service-section .container will push this down */
 }
-
 
 .service-img-overlay {
     position: absolute;
@@ -613,9 +615,6 @@ button {
     opacity: 1; 
     transition: opacity 0.3s ease;
 }
-
-
-
 
 .service-arrow-circle {
     width: 97.5px;
@@ -926,7 +925,6 @@ button {
     .container {
         max-width: 960px;
     }
-    
     .food-cards {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -937,27 +935,18 @@ button {
         flex-direction: column;
         gap: 40px;
     }
-    
-    .hero-text {
+    .hero-text, .hero-text p {
         max-width: 100%;
     }
-    
-    .hero-text p {
-        max-width: 100%;
-    }
-    
     .search-box {
         width: 100%;
     }
-    
     .food-cards {
         grid-template-columns: repeat(2, 1fr);
     }
-    
     .contact-content {
         flex-direction: column;
     }
-    
     .contact-text {
         max-width: 100%;
         margin-bottom: 30px;
@@ -969,36 +958,32 @@ button {
         flex-direction: column;
         gap: 20px;
     }
-    
     .main-nav ul {
         gap: 20px;
     }
-    
     .hero-text h1 {
         font-size: 50px;
     }
-    
     .search-box {
         flex-direction: column;
     }
-    
     .food-cards {
         grid-template-columns: 1fr;
     }
-    
-    .carousel-items {
-        flex-direction: column;
-        gap: 30px;
+    .carousel-container {
+        gap: 10px; /* Reduce gap on smaller screens */
     }
-    
-    .carousel-arrow {
-        display: none;
+    .arrow-circle { /* Optionally shrink arrows */
+        width: 50px;
+        height: 50px;
     }
-    
+    .arrow-circle img {
+        width: 15px;
+        height: 26px;
+    }
     .form-row {
         flex-direction: column;
     }
-    
     .footer-content {
         flex-direction: column;
         gap: 20px;
@@ -1009,4 +994,4 @@ button {
 /* Utility Classes */
 .hidden {
     display: none;
-} 
+}

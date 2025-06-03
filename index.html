@@ -412,17 +412,17 @@
 
     <!-- Trending Section -->
     <section class="trending-section">
-      <div class="container">
+      <div class="container"> <!-- Main page container for centering -->
         <h2 class="section-title">Popular Items</h2>
 
-        <div class="carousel-container">
+        <div class="carousel-container"> <!-- Flex container for arrows and items-wrapper -->
           <button class="carousel-arrow prev-arrow">
             <div class="arrow-circle">
-              <img src="images/left-arrow.svg" alt="Previous" />
+              <img src="images/left-arrow.svg" alt="Previous" /> <!-- Green filled SVG -->
             </div>
           </button>
 
-          <div class="carousel-items-wrapper">
+          <div class="carousel-items-wrapper"> <!-- Width set by JS -->
             <div class="carousel-items">
               <div class="food-card">
                 <div class="discount-tag">50%</div>
@@ -567,16 +567,16 @@
               </div>
             </div>
           </div>
+          
+          <button class="carousel-arrow next-arrow"> <!-- JS manages 'active' class -->
+            <div class="arrow-circle">
+              <img src="images/right-arrow.svg" alt="Next" /> <!-- White filled SVG -->
+            </div>
+          </button>
         </div>
 
-        <button class="carousel-arrow next-arrow active">
-          <div class="arrow-circle">
-            <img src="images/right-arrow.svg" alt="Next" />
-          </div>
-        </button>
+        <button class="request-dish-btn">Request a Dish</button>
       </div>
-
-      <button class="request-dish-btn">Request a Dish</button>
     </section>
     
     <!-- Video Section -->
@@ -690,7 +690,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- YouTube IFrame API Script (MUST be before your script.js) -->
     <script src="https://www.youtube.com/iframe_api"></script> 
     <script src="js/script.js"></script>
   </body>
