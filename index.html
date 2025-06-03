@@ -578,48 +578,28 @@
 
       <button class="request-dish-btn">Request a Dish</button>
     </section>
+    
     <!-- Video Section -->
     <section class="service-section">
-      <div class="container">
-        <div class="service-content">
-          <h2>We are providing best<br />home cooked food delivery service.</h2>
-          <p>
-            Away from home and craving the tasty homemade recipes?<br /><br />Choose
-            from a selection of our delicious home cooked dishes
-          </p>
-        </div>
-        <div class="service-card">
-          <div class="service-img-overlay"></div>
-          <!-- CUSTOM PLAY/PAUSE BUTTON -->
-          <div class="service-arrow video-play-btn"> <!-- Removed initial 'hidden' class if you want it always potentially visible or controlled by CSS hover -->
-            <div class="arrow-circle service-arrow-circle">
-              <img
-                src="images/service-arrow-white.svg"
-                alt="Play Video"
-                class="play-icon" 
-              />
-              <img
-                src="images/service-play-button.svg" 
-                alt="Pause Video"
-                class="pause-icon hidden"
-              />
+        <div class="container">
+            <div class="service-content">
+                <h2>We are providing best<br>home cooked food delivery service.</h2>
+                <p>Away from home and craving the tasty homemade recipes?<br><br>Choose from a selection of our delicious home cooked dishes</p>
             </div>
-          </div>
-          <!-- YOUTUBE IFRAME -->
-          <iframe
-            id="youtube-video-player"
-            class="service-video"
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/nPdl928XmFM?si=8tl9MHoS0wMNp3SZ&enablejsapi=1" 
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+            <div class="service-card">
+                <div class="service-img-overlay"></div>
+                <div class="service-arrow video-play-btn hidden">
+                    <div class="arrow-circle service-arrow-circle">
+                        <img src="images/service-arrow-white.svg" alt="Play Video" class="play-icon">
+                        <img src="images/service-play-button.svg" alt="Pause Video" class="pause-icon hidden">
+                    </div>
+                </div>
+                <video class="service-video" poster="images/service-bg-new.png">
+                    <source src="videos/cooking-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Contact Section -->
@@ -680,7 +660,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Request a Dish</h3>
-          <button class="close-modal">&times;</button>
+          <button class="close-modal">×</button>
         </div>
         <div class="modal-body">
           <form id="requestDishForm">
@@ -710,6 +690,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- YouTube IFrame API Script (MUST be before your script.js) -->
+    <script src="https://www.youtube.com/iframe_api"></script> 
     <script src="js/script.js"></script>
   </body>
 </html>

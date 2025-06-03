@@ -341,19 +341,16 @@ button {
 }
 
 .add-to-cart {
-    background-color: var(--background-lighter);
+    background-color: var(--secondary-color); /* Set default to yellow */
     border-radius: 5px;
     width: 22px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    /* transition: background-color 0.3s; /* No longer needed for background */
 }
 
-.add-to-cart:hover {
-    background-color: var(--secondary-color);
-}
 
 .add-to-cart.clicked {
     transform: scale(0.9);
@@ -423,7 +420,8 @@ button {
 }
 
 .next-arrow {
-    right: 10px;
+    right:10px;
+    margin-right: 235px;
 }
 
 .arrow-circle {
@@ -497,60 +495,64 @@ button {
     color: var(--text-dark);
 }
 
+/* css/style.css */
+
+/* ... (other styles remain the same) ... */
+
 /* Service Section */
 .service-section {
     position: relative;
-    overflow: hidden;
-    height: 860px;
+    overflow: hidden; /* Can be useful if elements inside try to overflow */
+    /* height: 860px; /* Consider making this auto or min-height if content dictates height */
+    padding: 80px 0; /* Add padding to the section itself */
+}
+
+.service-section::before,
+.service-section::after {
+    /* These pseudo-elements are for background colors, ensure they don't cover content if section height is not fixed */
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%; 
+    z-index: -1; /* Send them to the back */
 }
 
 .service-section::before {
-    content: '';
-    position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
     background-color: #FAFAFA;
-    z-index: 0;
 }
 
 .service-section::after {
-    content: '';
-    position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
     background-color: #C7EACC;
-    z-index: 0;
 }
 
 .service-section .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0;
-    gap: 50px;
-    max-width: 1050px;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
+    /* padding: 80px 0; /* Moved padding to .service-section */
+    gap: 40px; /* Adjusted gap */
+    max-width: 1050px; /* Or your preferred container width */
+    /* height: 100%; /* Remove if section height is not fixed */
+    position: relative; /* Keep for z-index stacking context if needed by children */
+    z-index: 1; /* Ensure content is above pseudo-elements */
 }
 
 .service-content {
     text-align: center;
-    position: relative;
-    z-index: 1;
+    position: relative; /* Stays relative */
+    z-index: 1; /* Keep above background if needed, but service-card will also be z-index 1 or auto */
     max-width: 864px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
+    margin: 0 auto; /* Center the text content */
+    /* padding: 0 15px; /* Handled by .container */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    margin-bottom: 30px; /* Add some space before the video card */
 }
 
 .service-content h2 {
@@ -577,54 +579,48 @@ button {
 }
 
 .service-card {
-    position: absolute;
-    width: 877px;
-    height: 442px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative; 
+    width: 877px;    
+    height: 442px;  
+    max-width: 100%; 
     border: 1px solid #DEDEDE;
     border-radius: 5px;
-    overflow: hidden;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 14.58%, rgba(56, 56, 56, 0.84) 100%), url('../images/service-bg-new.png');
-    background-size: cover;
-    background-position: center;
-    z-index: 2;
+    overflow: hidden; 
+    background-color: #000; 
+    z-index: 1;
+    margin: 0 auto; 
 }
 
-.service-img {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.service-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 .service-img-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0; 
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 2; 
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
 }
 
-.service-arrow {
+.service-arrow.video-play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 3; 
     cursor: pointer;
+    opacity: 1; 
+    transition: opacity 0.3s ease;
 }
+
+
+
 
 .service-arrow-circle {
     width: 97.5px;
     height: 97.5px;
-    background-color: #1AC073;
+    background-color: #1AC073; 
     box-shadow: 4px 5px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
@@ -637,32 +633,25 @@ button {
     transform: scale(1.05);
 }
 
-.service-arrow-circle img {
-    width: 28.9px;
-    height: 50.62px;
+.service-arrow-circle img { 
+    width: 28.9px;   
+    height: auto;    
     object-fit: contain;
 }
 
-/* Video Player Styles */
 .service-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    cursor: pointer;
+    object-fit: cover; 
+    z-index: 1; 
 }
 
-.play-icon, .pause-icon {
-    transition: opacity 0.3s ease;
-}
 
 .hidden {
-    display: none !important;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    display: none !important; 
 }
 
 .video-play-btn {
